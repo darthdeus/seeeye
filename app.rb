@@ -7,6 +7,10 @@ def clone_repo(repo)
   system("git clone #{repo} tmp/#{repo}")
 end
 
+def build_repo(repo)
+  puts system("cd tmp/#{repo} && rake")
+end
+
 get "/" do
   options["repos"].join "\n"
 end
