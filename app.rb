@@ -4,18 +4,18 @@ require "yaml"
 options = YAML.load_file("config.yml")
 
 def clone_repo(repo)
-  system("git clone #{repo} tmp/#{repo}")
+  system("git clone #{repo} tmp/repo")
 end
 
 def build_repo(repo)
-  puts system("cd tmp/#{repo} && rake")
+  `cd tmp/repo && rake`
 end
 
 get "/" do
   options["repos"].join "\n"
 end
 
-post "/" do
+post "/clone" do
   options["repos"].each do |repo|
     clone_repo repo
   end
@@ -23,3 +23,6 @@ post "/" do
   "all repositories were cloned"
 end
 
+post "/build/:repo" do |repo|
+  build_repo repo
+end
