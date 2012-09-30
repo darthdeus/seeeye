@@ -5,14 +5,20 @@ require "fileutils"
 
 options = YAML.load_file("config.yml")
 
+def repo_name(repo_url)
+  repo_url =~ /.*\/([\w-]+)/
+  $1
+end
+
 def clone_repo(repo)
   FileUtils.rm_rf("tmp/repo")
   grit = Grit::Git.new("/tmp/filler")
-  grit.clone({}, repo, "tmp/repo")
+  grit.clone({}, repo, "tmp/#{repo_name(repo)}")
+  "cloned into #{repo_name(repo)}"
 end
 
 def build_repo(repo)
-  `cd tmp/repo && rake`
+  `cd tmp/#{repo_name(repo)} && rake`
 end
 
 get "/" do
