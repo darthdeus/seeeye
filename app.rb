@@ -16,17 +16,13 @@ def build_repo(repo)
 end
 
 get "/" do
-  options["repos"].join "\n"
+  options["repo"]
 end
 
 post "/clone" do
-  options["repos"].each do |repo|
-    clone_repo repo
-  end
-
-  "all repositories were cloned"
+  clone_repo options["repo"]
 end
 
-post "/build/:repo" do |repo|
-  build_repo repo
+post "/build" do
+  build_repo options["repo"]
 end
