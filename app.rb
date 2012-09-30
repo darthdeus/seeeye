@@ -1,10 +1,14 @@
 require "sinatra"
+require "grit"
 require "yaml"
+require "fileutils"
 
 options = YAML.load_file("config.yml")
 
 def clone_repo(repo)
-  system("git clone #{repo} tmp/repo")
+  FileUtils.rm_rf("tmp/repo")
+  grit = Grit::Git.new("/tmp/filler")
+  grit.clone({}, repo, "tmp/repo")
 end
 
 def build_repo(repo)
