@@ -1,13 +1,19 @@
 GEM
   remote: http://rubygems.org/
   specs:
+    coderay (1.0.7)
     diff-lcs (1.1.3)
     grit (2.5.0)
       diff-lcs (~> 1.1)
       mime-types (~> 1.15)
       posix-spawn (~> 0.3.6)
+    method_source (0.8)
     mime-types (1.19)
     posix-spawn (0.3.6)
+    pry (0.9.10)
+      coderay (~> 1.0.5)
+      method_source (~> 0.8)
+      slop (~> 3.3.1)
     rack (1.4.1)
     rack-protection (1.2.0)
       rack
@@ -15,6 +21,7 @@ GEM
       rack (~> 1.3, >= 1.3.6)
       rack-protection (~> 1.2)
       tilt (~> 1.3, >= 1.3.3)
+    slop (3.3.3)
     tilt (1.3.3)
 
 PLATFORMS
@@ -22,4 +29,5 @@ PLATFORMS
 
 DEPENDENCIES
   grit
+  pry
   sinatra
